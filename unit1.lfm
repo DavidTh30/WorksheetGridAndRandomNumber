@@ -1,0 +1,187 @@
+object Form1: TForm1
+  Left = 461
+  Height = 456
+  Top = 112
+  Width = 970
+  Caption = 'Form1'
+  ClientHeight = 456
+  ClientWidth = 970
+  OnCreate = FormCreate
+  LCLVersion = '2.2.0.4'
+  object PageControl1: TPageControl
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 0
+    Height = 456
+    Top = 0
+    Width = 970
+    ActivePage = TabSheet2
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 1
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'TabSheet1'
+      ClientHeight = 428
+      ClientWidth = 962
+      object sWorksheetGrid1: TsWorksheetGrid
+        AnchorSideLeft.Control = TabSheet1
+        AnchorSideTop.Control = TabSheet1
+        AnchorSideRight.Control = BCMaterialDesignButton1
+        AnchorSideBottom.Control = TabSheet1
+        AnchorSideBottom.Side = asrBottom
+        Left = 0
+        Height = 428
+        Top = 0
+        Width = 840
+        FrozenCols = 0
+        FrozenRows = 0
+        PageBreakPen.Color = clBlue
+        PageBreakPen.Style = psDash
+        ReadFormulas = False
+        WorkbookSource = sWorksheetGrid1.internal
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        AutoAdvance = aaDown
+        ColCount = 3
+        DefaultColWidth = 64
+        DefaultRowHeight = 22
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSizing, goColSizing, goEditing, goSmoothScroll]
+        RowCount = 3
+        TabOrder = 0
+        OnClick = sWorksheetGrid1Click
+        OnClickHyperlink = sWorksheetGrid1ClickHyperlink
+      end
+      object Label1: TLabel
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 928
+        Height = 15
+        Top = 8
+        Width = 34
+        Anchors = [akTop, akRight]
+        Caption = 'Label1'
+      end
+      object BCMaterialDesignButton1: TBCMaterialDesignButton
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 72
+        Top = 40
+        Width = 122
+        NormalColor = clCream
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        TextQuality = fqSystemClearType
+        Anchors = [akTop, akRight]
+        Caption = 'B'
+        OnClick = BCMaterialDesignButton1Click
+      end
+      object BCMaterialDesignButton2: TBCMaterialDesignButton
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 40
+        Top = 120
+        Width = 122
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        Anchors = [akTop, akRight]
+        Caption = 'Test grid'
+        OnClick = BCMaterialDesignButton2Click
+      end
+      object BCMaterialDesignButton3: TBCMaterialDesignButton
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 40
+        Top = 160
+        Width = 122
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        Anchors = [akTop, akRight]
+        Caption = 'Protection'
+        OnClick = BCMaterialDesignButton3Click
+      end
+      object BCMaterialDesignButton4: TBCMaterialDesignButton
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 40
+        Top = 200
+        Width = 122
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        Anchors = [akTop, akRight]
+        Caption = 'Merged cells'
+        OnClick = BCMaterialDesignButton4Click
+      end
+      object BCMaterialDesignButton5: TBCMaterialDesignButton
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 40
+        Top = 240
+        Width = 122
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        Anchors = [akTop, akRight]
+        Caption = 'Unmerge Cells'
+        OnClick = BCMaterialDesignButton5Click
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'TabSheet2'
+      ClientHeight = 428
+      ClientWidth = 962
+      object BCMaterialDesignButton6: TBCMaterialDesignButton
+        AnchorSideRight.Control = TabSheet2
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 72
+        Top = 40
+        Width = 122
+        NormalColor = clCream
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        TextQuality = fqSystemClearType
+        Anchors = [akTop, akRight]
+        Caption = 'B'
+        OnClick = BCMaterialDesignButton6Click
+      end
+      object sWorksheetGrid2: TsWorksheetGrid
+        AnchorSideLeft.Control = TabSheet2
+        AnchorSideTop.Control = TabSheet2
+        AnchorSideRight.Control = BCMaterialDesignButton6
+        AnchorSideBottom.Control = TabSheet2
+        AnchorSideBottom.Side = asrBottom
+        Left = 0
+        Height = 428
+        Top = 0
+        Width = 840
+        FrozenCols = 0
+        FrozenRows = 0
+        PageBreakPen.Color = clBlue
+        PageBreakPen.Style = psDash
+        ReadFormulas = False
+        WorkbookSource = sWorksheetGrid2.internal
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        AutoAdvance = aaDown
+        ColCount = 3
+        DefaultColWidth = 64
+        DefaultRowHeight = 22
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSizing, goColSizing, goEditing, goSmoothScroll]
+        RowCount = 3
+        TabOrder = 0
+      end
+    end
+  end
+end

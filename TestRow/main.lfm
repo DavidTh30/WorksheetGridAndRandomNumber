@@ -1,0 +1,56 @@
+object MainForm: TMainForm
+  Left = 1044
+  Height = 487
+  Top = 172
+  Width = 683
+  Caption = 'TestRowCountForm'
+  ClientHeight = 487
+  ClientWidth = 683
+  OnShow = FormShow
+  LCLVersion = '1.6.0.4'
+  object sWorkbookTabControl1: TsWorkbookTabControl
+    Left = 56
+    Height = 408
+    Top = 72
+    Width = 544
+    TabIndex = 0
+    Tabs.Strings = (
+      'Sheet1'
+    )
+    TabOrder = 0
+    WorkbookSource = sWorkbookSource1
+    object sWorksheetGrid1: TsWorksheetGrid
+      Left = 2
+      Height = 383
+      Top = 23
+      Width = 540
+      FrozenCols = 0
+      FrozenRows = 0
+      ReadFormulas = False
+      WorkbookSource = sWorkbookSource1
+      Align = alClient
+      AutoAdvance = aaDown
+      ColCount = 27
+      DefaultColWidth = 64
+      DefaultRowHeight = 22
+      RowCount = 101
+      TabOrder = 1
+    end
+  end
+  object Button1: TButton
+    Left = 424
+    Height = 25
+    Top = 32
+    Width = 176
+    Caption = 'Show RowCount in grid'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object sWorkbookSource1: TsWorkbookSource
+    AutoDetectFormat = False
+    FileFormat = sfUser
+    Options = []
+    left = 64
+    top = 16
+  end
+end
