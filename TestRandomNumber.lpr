@@ -17,9 +17,11 @@ uses
 
 begin
   RequireDerivedFormResource:=True;
+  Application.Title:='WorksheetGrid and Random number';
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TWorksheetGridAndRandomNumber, 
+    WorksheetGridAndRandomNumber);
   Application.Run;
 end.
 
