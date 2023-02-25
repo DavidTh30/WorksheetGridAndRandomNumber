@@ -1,9 +1,9 @@
-object Form1: TForm1
+object WorksheetGridAndRandomNumber: TWorksheetGridAndRandomNumber
   Left = 97
   Height = 456
   Top = 0
   Width = 970
-  Caption = 'Form1'
+  Caption = 'WorksheetGrid and Random number'
   ClientHeight = 456
   ClientWidth = 970
   OnCreate = FormCreate
@@ -30,7 +30,7 @@ object Form1: TForm1
       object sWorksheetGrid1: TsWorksheetGrid
         AnchorSideLeft.Control = TabSheet1
         AnchorSideTop.Control = TabSheet1
-        AnchorSideRight.Control = BCMaterialDesignButton1
+        AnchorSideRight.Control = LinearCongruentialGeneratorButton
         AnchorSideBottom.Control = TabSheet1
         AnchorSideBottom.Side = asrBottom
         Left = 0
@@ -65,7 +65,7 @@ object Form1: TForm1
         Caption = 'Label1'
         ParentColor = False
       end
-      object BCMaterialDesignButton1: TBCMaterialDesignButton
+      object LinearCongruentialGeneratorButton: TBCMaterialDesignButton
         AnchorSideRight.Control = TabSheet1
         AnchorSideRight.Side = asrBottom
         Left = 840
@@ -78,8 +78,8 @@ object Form1: TForm1
         TextFont = 'default'
         TextQuality = fqSystemClearType
         Anchors = [akTop, akRight]
-        Caption = 'Linear'
-        OnClick = BCMaterialDesignButton1Click
+        Caption = 'Linear Congruential Generator'
+        OnClick = LinearCongruentialGeneratorButtonClick
       end
       object BCMaterialDesignButton2: TBCMaterialDesignButton
         AnchorSideRight.Control = TabSheet1
@@ -142,7 +142,7 @@ object Form1: TForm1
       Caption = 'WorksheetGridConveterFunction'
       ClientHeight = 428
       ClientWidth = 962
-      object BCMaterialDesignButton6: TBCMaterialDesignButton
+      object GridConveterButton: TBCMaterialDesignButton
         AnchorSideRight.Control = TabSheet2
         AnchorSideRight.Side = asrBottom
         Left = 840
@@ -155,13 +155,13 @@ object Form1: TForm1
         TextFont = 'default'
         TextQuality = fqSystemClearType
         Anchors = [akTop, akRight]
-        Caption = 'GridConveter'
-        OnClick = BCMaterialDesignButton6Click
+        Caption = 'Grid Conveter'
+        OnClick = GridConveterButtonClick
       end
       object sWorksheetGrid2: TsWorksheetGrid
         AnchorSideLeft.Control = TabSheet2
         AnchorSideTop.Control = TabSheet2
-        AnchorSideRight.Control = BCMaterialDesignButton6
+        AnchorSideRight.Control = GridConveterButton
         AnchorSideBottom.Control = TabSheet2
         AnchorSideBottom.Side = asrBottom
         Left = 0
@@ -185,19 +185,19 @@ object Form1: TForm1
       end
     end
     object TabSheet3: TTabSheet
-      Caption = 'TabSheet3'
+      Caption = 'Random Type'
       ClientHeight = 428
       ClientWidth = 962
       object sWorksheetGrid3: TsWorksheetGrid
         AnchorSideLeft.Control = TabSheet3
         AnchorSideTop.Control = TabSheet3
-        AnchorSideRight.Control = BCMaterialDesignButton7
+        AnchorSideRight.Control = RandomSkipDoublyButton
         AnchorSideBottom.Control = TabSheet3
         AnchorSideBottom.Side = asrBottom
         Left = 0
         Height = 428
         Top = 0
-        Width = 840
+        Width = 720
         FrozenCols = 0
         FrozenRows = 0
         PageBreakPen.Color = clBlue
@@ -213,24 +213,22 @@ object Form1: TForm1
         RowCount = 3
         TabOrder = 0
       end
-      object BCMaterialDesignButton7: TBCMaterialDesignButton
-        AnchorSideRight.Control = TabSheet3
+      object RandomSkipDoublyButton: TBCMaterialDesignButton
         AnchorSideRight.Side = asrBottom
-        Left = 840
+        Left = 720
         Height = 72
-        Top = 64
+        Top = 40
         Width = 122
         NormalColor = clCream
         ShadowSize = 3
         TextShadowSize = 0
         TextFont = 'default'
         TextQuality = fqSystemClearType
-        Anchors = [akTop, akRight]
-        Caption = 'Random type 1'
-        OnClick = BCMaterialDesignButton7Click
+        Anchors = [akTop]
+        Caption = 'Random skip doubly'
+        OnClick = RandomSkipDoublyButtonClick
       end
-      object BCMaterialDesignButton8: TBCMaterialDesignButton
-        AnchorSideRight.Control = TabSheet1
+      object InitializationArrayRamdomButton: TBCMaterialDesignButton
         AnchorSideRight.Side = asrBottom
         Left = 840
         Height = 40
@@ -239,57 +237,170 @@ object Form1: TForm1
         ShadowSize = 3
         TextShadowSize = 0
         TextFont = 'default'
-        Anchors = [akTop, akRight]
+        Anchors = [akTop]
         Caption = 'Init=100'
-        OnClick = BCMaterialDesignButton8Click
+        OnClick = InitializationArrayRamdomButtonClick
       end
-      object BCMaterialDesignButton9: TBCMaterialDesignButton
-        AnchorSideRight.Control = TabSheet3
+      object RandomSkipDoublyAutoUpStateButton: TBCMaterialDesignButton
         AnchorSideRight.Side = asrBottom
-        Left = 840
+        Left = 720
         Height = 72
-        Top = 136
+        Top = 184
         Width = 122
         NormalColor = clCream
         ShadowSize = 3
         TextShadowSize = 0
         TextFont = 'default'
         TextQuality = fqSystemClearType
-        Anchors = [akTop, akRight]
-        Caption = 'Random type 2'
-        OnClick = BCMaterialDesignButton9Click
+        Anchors = [akTop]
+        Caption = 'Random skip doubly Auto up state'
+        OnClick = RandomSkipDoublyAutoUpStateButtonClick
       end
-      object BCMaterialDesignButton10: TBCMaterialDesignButton
-        AnchorSideRight.Control = TabSheet3
+      object Random10NumberIn0to100SkipDoublelyAutoUpStateButton: TBCMaterialDesignButton
+        AnchorSideRight.Side = asrBottom
+        Left = 720
+        Height = 72
+        Top = 256
+        Width = 122
+        NormalColor = clCream
+        ShadowSize = 3
+        TextSize = 12
+        TextShadowSize = 0
+        TextFont = 'default'
+        TextQuality = fqSystemClearType
+        Anchors = [akTop]
+        Caption = 'Random 10 number in 0to100 skip doublely Auto up state'
+        OnClick = Random10NumberIn0to100SkipDoublelyAutoUpStateButtonClick
+      end
+      object Random100NumberIn0to100SkipDoublelyAutoUpStateButton: TBCMaterialDesignButton
+        AnchorSideRight.Side = asrBottom
+        Left = 720
+        Height = 72
+        Top = 328
+        Width = 122
+        NormalColor = clCream
+        ShadowSize = 3
+        TextSize = 12
+        TextShadowSize = 0
+        TextFont = 'default'
+        TextQuality = fqSystemClearType
+        Anchors = [akTop]
+        Caption = 'Random 100 number in 0to100 skip doublely Auto up state'
+        OnClick = Random100NumberIn0to100SkipDoublelyAutoUpStateButtonClick
+      end
+      object SingleAdd1to100Button: TBCMaterialDesignButton
         AnchorSideRight.Side = asrBottom
         Left = 840
         Height = 72
-        Top = 208
+        Top = 40
         Width = 122
         NormalColor = clCream
         ShadowSize = 3
         TextShadowSize = 0
         TextFont = 'default'
         TextQuality = fqSystemClearType
-        Anchors = [akTop, akRight]
-        Caption = 'while loop=1-10'
-        OnClick = BCMaterialDesignButton10Click
+        Anchors = [akTop]
+        Caption = 'Single add 0-100'
+        OnClick = SingleAdd1to100ButtonClick
       end
-      object BCMaterialDesignButton11: TBCMaterialDesignButton
-        AnchorSideRight.Control = TabSheet3
+      object SingleAdd1TrickIn1to100Button: TBCMaterialDesignButton
         AnchorSideRight.Side = asrBottom
         Left = 840
         Height = 72
-        Top = 280
+        Top = 112
         Width = 122
         NormalColor = clCream
         ShadowSize = 3
         TextShadowSize = 0
         TextFont = 'default'
         TextQuality = fqSystemClearType
-        Anchors = [akTop, akRight]
-        Caption = 'while =0-100'
-        OnClick = BCMaterialDesignButton11Click
+        Anchors = [akTop]
+        Caption = 'Single add 1 in 0-100'
+        OnClick = SingleAdd1TrickIn1to100ButtonClick
+      end
+      object Random10TrickIn1to10Button: TBCMaterialDesignButton
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 72
+        Top = 184
+        Width = 122
+        NormalColor = clCream
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        TextQuality = fqSystemClearType
+        Anchors = [akTop]
+        Caption = 'Random 10 trick in 1-10'
+        OnClick = Random10TrickIn1to10ButtonClick
+      end
+      object SingleAdd1In1To10Button: TBCMaterialDesignButton
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 72
+        Top = 256
+        Width = 122
+        NormalColor = clCream
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        TextQuality = fqSystemClearType
+        Anchors = [akTop]
+        Caption = 'Single add 1 in 1-10'
+        OnClick = SingleAdd1In1To10ButtonClick
+      end
+      object RandomWithDifficultButton: TBCMaterialDesignButton
+        AnchorSideRight.Side = asrBottom
+        Left = 720
+        Height = 72
+        Top = 112
+        Width = 122
+        NormalColor = clCream
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        TextQuality = fqSystemClearType
+        Anchors = [akTop]
+        Caption = 'Random with Difficult'
+        OnClick = RandomWithDifficultButtonClick
+      end
+      object Difficult50PercentButton: TBCMaterialDesignButton
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 32
+        Top = 328
+        Width = 122
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        Anchors = [akTop]
+        Caption = '50% Difficult'
+        OnClick = Difficult50PercentButtonClick
+      end
+      object Difficult30PercentButton: TBCMaterialDesignButton
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 32
+        Top = 360
+        Width = 122
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        Anchors = [akTop]
+        Caption = '30% Difficult'
+        OnClick = Difficult30PercentButtonClick
+      end
+      object Difficult5PercentButton: TBCMaterialDesignButton
+        AnchorSideRight.Side = asrBottom
+        Left = 840
+        Height = 32
+        Top = 396
+        Width = 122
+        ShadowSize = 3
+        TextShadowSize = 0
+        TextFont = 'default'
+        Anchors = [akTop]
+        Caption = '5% Difficult'
+        OnClick = Difficult5PercentButtonClick
       end
     end
   end
