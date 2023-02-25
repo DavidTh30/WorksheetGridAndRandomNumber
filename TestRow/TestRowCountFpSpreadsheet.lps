@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Active="Default"/>
+    <BuildModes Active="Release"/>
     <Units Count="3">
       <Unit0>
         <Filename Value="TestRowCountFpSpreadsheet.lpr"/>
@@ -22,7 +22,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="24"/>
+        <TopLine Value="23"/>
         <CursorPos X="29" Y="50"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
