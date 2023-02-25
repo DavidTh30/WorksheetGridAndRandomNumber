@@ -1,13 +1,13 @@
 object MainForm: TMainForm
-  Left = 1044
+  Left = 503
   Height = 487
-  Top = 172
+  Top = 124
   Width = 683
   Caption = 'TestRowCountForm'
   ClientHeight = 487
   ClientWidth = 683
   OnShow = FormShow
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.2.2.0'
   object sWorkbookTabControl1: TsWorkbookTabControl
     Left = 56
     Height = 408
@@ -26,14 +26,14 @@ object MainForm: TMainForm
       Width = 540
       FrozenCols = 0
       FrozenRows = 0
+      PageBreakPen.Color = clBlue
+      PageBreakPen.Style = psDash
       ReadFormulas = False
       WorkbookSource = sWorkbookSource1
       Align = alClient
       AutoAdvance = aaDown
-      ColCount = 27
       DefaultColWidth = 64
       DefaultRowHeight = 22
-      RowCount = 101
       TabOrder = 1
     end
   end
@@ -50,7 +50,7 @@ object MainForm: TMainForm
     AutoDetectFormat = False
     FileFormat = sfUser
     Options = []
-    left = 64
-    top = 16
+    Left = 64
+    Top = 16
   end
 end
