@@ -7,6 +7,7 @@ object WorksheetGridAndRandomNumber: TWorksheetGridAndRandomNumber
   ClientHeight = 456
   ClientWidth = 970
   OnCreate = FormCreate
+  Position = poWorkAreaCenter
   LCLVersion = '2.2.2.0'
   object PageControl1: TPageControl
     AnchorSideLeft.Control = Owner
