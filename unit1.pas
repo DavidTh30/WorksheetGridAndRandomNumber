@@ -10,21 +10,41 @@ uses
   Grids, ComCtrls, StrUtils, Math;
 
 type
+  Digit_ = Record
+    Digit_1:integer;
+    Digit_2:integer;
+    Digit_3:integer;
+    Digit_4:integer;
+    Integer0_9:integer;
+    Integer0_99:integer;
+    Integer0_999:integer;
+    Integer0_9999:integer;
+  end;
 
-  { TForm1 }
+type
 
-  TForm1 = class(TForm)
-    BCMaterialDesignButton1: TBCMaterialDesignButton;
-    BCMaterialDesignButton10: TBCMaterialDesignButton;
-    BCMaterialDesignButton11: TBCMaterialDesignButton;
+  { TWorksheetGridAndRandomNumber }
+
+  TWorksheetGridAndRandomNumber = class(TForm)
+    Difficult50PercentButton: TBCMaterialDesignButton;
+    Difficult30PercentButton: TBCMaterialDesignButton;
+    Difficult5PercentButton: TBCMaterialDesignButton;
+    LinearCongruentialGeneratorButton: TBCMaterialDesignButton;
+    Random10NumberIn0to100SkipDoublelyAutoUpStateButton: TBCMaterialDesignButton;
+    Random100NumberIn0to100SkipDoublelyAutoUpStateButton: TBCMaterialDesignButton;
+    SingleAdd1to100Button: TBCMaterialDesignButton;
+    SingleAdd1TrickIn1to100Button: TBCMaterialDesignButton;
+    Random10TrickIn1to10Button: TBCMaterialDesignButton;
+    SingleAdd1In1To10Button: TBCMaterialDesignButton;
     BCMaterialDesignButton2: TBCMaterialDesignButton;
     BCMaterialDesignButton3: TBCMaterialDesignButton;
     BCMaterialDesignButton4: TBCMaterialDesignButton;
     BCMaterialDesignButton5: TBCMaterialDesignButton;
-    BCMaterialDesignButton6: TBCMaterialDesignButton;
-    BCMaterialDesignButton7: TBCMaterialDesignButton;
-    BCMaterialDesignButton8: TBCMaterialDesignButton;
-    BCMaterialDesignButton9: TBCMaterialDesignButton;
+    GridConveterButton: TBCMaterialDesignButton;
+    RandomSkipDoublyButton: TBCMaterialDesignButton;
+    RandomWithDifficultButton: TBCMaterialDesignButton;
+    InitializationArrayRamdomButton: TBCMaterialDesignButton;
+    RandomSkipDoublyAutoUpStateButton: TBCMaterialDesignButton;
     Label1: TLabel;
     PageControl1: TPageControl;
     sWorksheetGrid1: TsWorksheetGrid;
@@ -33,23 +53,33 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
-    procedure BCMaterialDesignButton10Click(Sender: TObject);
-    procedure BCMaterialDesignButton11Click(Sender: TObject);
-    procedure BCMaterialDesignButton1Click(Sender: TObject);
+    procedure Difficult30PercentButtonClick(Sender: TObject);
+    procedure Difficult5PercentButtonClick(Sender: TObject);
+    procedure Difficult50PercentButtonClick(Sender: TObject);
+    procedure Random10NumberIn0to100SkipDoublelyAutoUpStateButtonClick(Sender: TObject);
+    procedure Random100NumberIn0to100SkipDoublelyAutoUpStateButtonClick(Sender: TObject);
+    procedure SingleAdd1to100ButtonClick(Sender: TObject);
+    procedure SingleAdd1TrickIn1to100ButtonClick(Sender: TObject);
+    procedure Random10TrickIn1to10ButtonClick(Sender: TObject);
+    procedure SingleAdd1In1To10ButtonClick(Sender: TObject);
+    procedure LinearCongruentialGeneratorButtonClick(Sender: TObject);
     procedure BCMaterialDesignButton2Click(Sender: TObject);
     procedure BCMaterialDesignButton3Click(Sender: TObject);
     procedure BCMaterialDesignButton4Click(Sender: TObject);
     procedure BCMaterialDesignButton5Click(Sender: TObject);
-    procedure BCMaterialDesignButton6Click(Sender: TObject);
-    procedure BCMaterialDesignButton7Click(Sender: TObject);
-    procedure BCMaterialDesignButton8Click(Sender: TObject);
-    procedure BCMaterialDesignButton9Click(Sender: TObject);
+    procedure GridConveterButtonClick(Sender: TObject);
+    procedure RandomSkipDoublyButtonClick(Sender: TObject);
+    procedure RandomWithDifficultButtonClick(Sender: TObject);
+    procedure InitializationArrayRamdomButtonClick(Sender: TObject);
+    procedure RandomSkipDoublyAutoUpStateButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure LinearCongruentialGenerator(_Seed_: integer; _A_:integer; _C_:integer; _M_:integer; Sender: TObject);
     procedure LinearCongruentialGenerator_Grid(_Seed_: integer; _A_:integer; _C_:integer; _M_:integer; Sender: TsWorksheetGrid; Col_:integer);
     procedure sWorksheetGrid1Click(Sender: TObject);
     procedure sWorksheetGrid1ClickHyperlink(Sender: TObject;
       const AHyperlink: TsHyperlink);
+    function DifficultRandom(IndexPosition:integer; MinEasy:integer; MaxEasy:integer): boolean;
+    function RandomByMinMax(Min_:integer; Max_:integer): integer;
   private
 
   public
@@ -105,16 +135,18 @@ const
   scTransparent = $20000000;
 
 var
-  Form1: TForm1;
+  WorksheetGridAndRandomNumber: TWorksheetGridAndRandomNumber;
   Random0To100 : array [0..100] of integer;
   Percent_Random0To100:integer;
+  RandomDigit:Digit_;
+
 implementation
 
 {$R *.lfm}
 
-{ TForm1 }
+{ TWorksheetGridAndRandomNumber }
 
-procedure TForm1.LinearCongruentialGenerator(_Seed_: integer; _A_:integer; _C_:integer; _M_:integer; Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.LinearCongruentialGenerator(_Seed_: integer; _A_:integer; _C_:integer; _M_:integer; Sender: TObject);
 //Linear congruential generator
 var
   i:integer;
@@ -141,7 +173,7 @@ begin
   end;
 end;
 
-procedure TForm1.LinearCongruentialGenerator_Grid(_Seed_: integer; _A_:integer; _C_:integer; _M_:integer; Sender: TsWorksheetGrid; Col_:integer);
+procedure TWorksheetGridAndRandomNumber.LinearCongruentialGenerator_Grid(_Seed_: integer; _A_:integer; _C_:integer; _M_:integer; Sender: TsWorksheetGrid; Col_:integer);
 //Linear congruential generator
 var
   i:integer;
@@ -171,7 +203,7 @@ begin
   end;
 end;
 
-procedure TForm1.sWorksheetGrid1Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.sWorksheetGrid1Click(Sender: TObject);
 begin
   if((sWorksheetGrid1.ColCount-1)<sWorksheetGrid1.ColRow.X)then begin Label1.Caption:=''; exit; end;
   if((sWorksheetGrid1.RowCount-1)<sWorksheetGrid1.ColRow.Y)then begin Label1.Caption:=''; exit; end;
@@ -182,7 +214,7 @@ begin
   Label1.Caption:=sWorksheetGrid1.Cells[sWorksheetGrid1.ColRow.X,sWorksheetGrid1.ColRow.Y];
 end;
 
-procedure TForm1.sWorksheetGrid1ClickHyperlink(Sender: TObject; const AHyperlink: TsHyperlink);
+procedure TWorksheetGridAndRandomNumber.sWorksheetGrid1ClickHyperlink(Sender: TObject; const AHyperlink: TsHyperlink);
 var
   uri: TUri;
 begin
@@ -196,7 +228,7 @@ begin
   end;
 end;
 
-procedure TForm1.BCMaterialDesignButton1Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.LinearCongruentialGeneratorButtonClick(Sender: TObject);
 begin
   LinearCongruentialGenerator_Grid(1,2,3,4,sWorksheetGrid1,1);
   LinearCongruentialGenerator_Grid(2,3,4,5,sWorksheetGrid1,2);
@@ -218,10 +250,10 @@ begin
   LinearCongruentialGenerator_Grid(100,200,300,130,sWorksheetGrid1,18);
   LinearCongruentialGenerator_Grid(99,99,99,99,sWorksheetGrid1,19);
   LinearCongruentialGenerator_Grid(4,75,74,65537,sWorksheetGrid1,20)
-  //LinearCongruentialGenerator(4,5,6,7,label6);
+  //LinearCongruentialGeneratorButton(4,5,6,7,label6);
 end;
 
-procedure TForm1.BCMaterialDesignButton10Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.Random10NumberIn0to100SkipDoublelyAutoUpStateButtonClick(Sender: TObject);
 var
   i:integer;
   i2:integer;
@@ -238,9 +270,9 @@ begin
   Randomize();
   min:=0;
   max:=100;
+  Counter_:=0;
   min_value:=Percent_Random0To100;
-  min_value:=Percent_Random0To100;
-  if (max<min) then max:=min+1;
+  max_value:=Percent_Random0To100;
 
   //_r_:=2*3+1;  //_r_=7
   //showmessage(_r_.ToString);
@@ -268,7 +300,8 @@ begin
       continue;
     end;
 
-    _r_:=((min+random(10000))mod (max+1)); //min to max
+    _r_:=RandomByMinMax(min,max);
+
     if(min_value=max_value)then
     begin
       Random0To100[_r_]:=round(Random0To100[_r_]/2);
@@ -298,7 +331,52 @@ begin
   end;
 end;
 
-procedure TForm1.BCMaterialDesignButton11Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.Difficult50PercentButtonClick(Sender: TObject);
+var
+  i:integer;
+  Counter_:integer;
+begin
+
+  Counter_:=0;
+
+  for i:=1 to 100 do //100%
+  begin
+    if(DifficultRandom(50,1,100)) then Counter_:=Counter_+1; //50 in 100 = 50%
+  end;
+  showmessage('Counter='+Counter_.ToString+'%');
+end;
+
+procedure TWorksheetGridAndRandomNumber.Difficult30PercentButtonClick(Sender: TObject);
+var
+  i:integer;
+  Counter_:integer;
+begin
+
+  Counter_:=0;
+
+  for i:=1 to 100 do //100%
+  begin
+    if(DifficultRandom(120,1,400)) then Counter_:=Counter_+1; //120 in 400 = 30%
+  end;
+  showmessage('Counter='+Counter_.ToString+'%');
+end;
+
+procedure TWorksheetGridAndRandomNumber.Difficult5PercentButtonClick(Sender: TObject);
+var
+  i:integer;
+  Counter_:integer;
+begin
+
+  Counter_:=0;
+
+  for i:=1 to 100 do //100%
+  begin
+    if(DifficultRandom(50,1,1000)) then Counter_:=Counter_+1; //50 in 1000 = 5%
+  end;
+  showmessage('Counter='+Counter_.ToString+'%');
+end;
+
+procedure TWorksheetGridAndRandomNumber.Random100NumberIn0to100SkipDoublelyAutoUpStateButtonClick(Sender: TObject);
 var
   i:integer;
   i2:integer;
@@ -315,9 +393,9 @@ begin
   Randomize();
   min:=0;
   max:=100;
+  Counter_:=0;
   min_value:=Percent_Random0To100;
-  min_value:=Percent_Random0To100;
-  if (max<min) then max:=min+1;
+  max_value:=Percent_Random0To100;
 
   //_r_:=2*3+1;  //_r_=7
   //showmessage(_r_.ToString);
@@ -345,7 +423,8 @@ begin
       continue;
     end;
 
-    _r_:=((min+random(10000))mod (max+1)); //min to max
+    _r_:=RandomByMinMax(min,max);
+
     if(min_value=max_value)then
     begin
       Random0To100[_r_]:=round(Random0To100[_r_]/2);
@@ -375,7 +454,352 @@ begin
   end;
 end;
 
-procedure TForm1.BCMaterialDesignButton2Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.SingleAdd1to100ButtonClick(Sender: TObject);
+var
+  i:integer;
+  i2:integer;
+  _r_:integer;
+  min:integer;
+  max:integer;
+  min_value:integer;
+  max_value:integer;
+  Tempo0To100 : array [0..100] of boolean;
+  Tempo2_0To100 : array [0..100] of integer;
+  Counter_:integer;
+  Is_Full:boolean;
+begin
+
+  Randomize();
+  min:=0;
+  max:=100;
+  Counter_:=0;
+  min_value:=Percent_Random0To100;
+  max_value:=Percent_Random0To100;
+
+  //_r_:=2*3+1;  //_r_=7
+  //showmessage(_r_.ToString);
+  for i := 0 to 100 do
+  begin
+    Tempo0To100[i]:=false;
+    Tempo2_0To100[i]:=0;
+  end;
+
+  for i := 0 to sWorksheetGrid3.RowCount-1 do
+  begin
+    if((sWorksheetGrid3.Cells[3,i+1]='')or(sWorksheetGrid3.Cells[3,i+1]=null))then
+      Tempo2_0To100[i]:= 0
+    else
+      Tempo2_0To100[i]:= StrToInt(sWorksheetGrid3.Cells[3,i+1]);
+  end;
+  for i := 0 to 100 do
+  begin
+    if((Tempo2_0To100[i]>0)and(Counter_<Tempo2_0To100[i]))then Counter_:=Tempo2_0To100[i];
+  end;
+
+  //showmessage('Counter_='+Counter_.ToString);
+
+  i:=0;
+  while i<=100 do
+  begin
+    //min+random(10000)mod max + 1;
+    Application.ProcessMessages;
+    min_value:=MinValue(Random0To100);
+    max_value:=MaxValue(Random0To100);
+
+    Is_Full:=true;
+    for i2 := 0 to 100 do
+    begin
+      if((Tempo2_0To100[i2]>0)and(Counter_<Tempo2_0To100[i2]))then Counter_:=Tempo2_0To100[i2];
+      if(Tempo2_0To100[i2]=0)then Is_Full:=false;
+    end;
+    if(Is_Full)then
+    begin
+      //showmessage('Is full i='+ i.ToString);
+      break;
+    end;
+
+    if(min_value<max_value)and(max_value<Percent_Random0To100)or(min_value=max_value)and(max_value<Percent_Random0To100)then
+    begin
+      //showmessage('Min='+min_value.ToString+'  Max='+max_value.ToString);
+      for i2 := 0 to 100 do
+      begin
+        if(Random0To100[i2]=max_value)then begin Random0To100[i2]:=Percent_Random0To100; Tempo2_0To100[i2]:= 0; end;
+        if(Random0To100[i2]<max_value)then Random0To100[i2]:=round(Percent_Random0To100/2);
+      end;
+      continue;
+    end;
+
+    _r_:=RandomByMinMax(min,max);
+
+    if(min_value=max_value)then
+    begin
+      Random0To100[_r_]:=round(Random0To100[_r_]/2);
+      i:=i+1;
+      Tempo0To100[_r_]:=true;
+      Counter_:=Counter_+1;
+      Tempo2_0To100[_r_]:=Counter_;
+      continue;
+    end;
+    if(Random0To100[_r_]=max_value)then
+    begin
+      Random0To100[_r_]:=round(Random0To100[_r_]/2);
+      i:=i+1;
+      Tempo0To100[_r_]:=true;
+      Counter_:=Counter_+1;
+      Tempo2_0To100[_r_]:=Counter_;
+      continue;
+    end;
+  end;
+
+  //showmessage('i='+i.ToString);
+
+  for i := 0 to 100 do
+  begin
+    sWorksheetGrid3.Cells[1,i+1]:= i.ToString+'='+Random0To100[i].ToString+'%';
+    if(Tempo0To100[i]=false)then sWorksheetGrid3.Cells[2,i+1]:= '';
+    if(Tempo0To100[i]=true)then sWorksheetGrid3.Cells[2,i+1]:= 'Active';
+    sWorksheetGrid3.Cells[3,i+1]:= Tempo2_0To100[i].ToString;
+    //if(Tempo2_0To100[i]=0)then sWorksheetGrid3.Cells[3,i+1]:= '';
+  end;
+end;
+
+procedure TWorksheetGridAndRandomNumber.SingleAdd1TrickIn1to100ButtonClick(Sender: TObject);
+var
+  i:integer;
+  i2:integer;
+  _r_:integer;
+  min:integer;
+  max:integer;
+  min_value:integer;
+  max_value:integer;
+  Tempo0To100 : array [0..100] of boolean;
+  Tempo2_0To100 : array [0..100] of integer;
+  Counter_:integer;
+  Is_Full:boolean;
+begin
+
+  Randomize();
+  min:=0;
+  max:=100;
+  Counter_:=0;
+  min_value:=Percent_Random0To100;
+  max_value:=Percent_Random0To100;
+
+  //_r_:=2*3+1;  //_r_=7
+  //showmessage(_r_.ToString);
+  for i := 0 to 100 do
+  begin
+    Tempo0To100[i]:=false;
+    Tempo2_0To100[i]:=0;
+  end;
+
+  for i := 0 to sWorksheetGrid3.RowCount-1 do
+  begin
+    if((sWorksheetGrid3.Cells[3,i+1]='')or(sWorksheetGrid3.Cells[3,i+1]=null))then
+      Tempo2_0To100[i]:= 0
+    else
+      Tempo2_0To100[i]:= StrToInt(sWorksheetGrid3.Cells[3,i+1]);
+  end;
+  for i := 0 to 100 do
+  begin
+    if((Tempo2_0To100[i]>0)and(Counter_<Tempo2_0To100[i]))then Counter_:=Tempo2_0To100[i];
+  end;
+
+  //showmessage(Counter_.ToString);
+
+  i:=0;
+  while i<=0 do
+  begin
+    //min+random(10000)mod max + 1;
+    Application.ProcessMessages;
+    min_value:=MinValue(Random0To100);
+    max_value:=MaxValue(Random0To100);
+
+    Is_Full:=true;
+    for i2 := 0 to 100 do
+    begin
+      if((Tempo2_0To100[i2]>0)and(Counter_<Tempo2_0To100[i2]))then Counter_:=Tempo2_0To100[i2];
+      if(Tempo2_0To100[i2]=0)then Is_Full:=false;
+    end;
+    if(Is_Full)then break;
+
+    if(min_value<max_value)and(max_value<Percent_Random0To100)or(min_value=max_value)and(max_value<Percent_Random0To100)then
+    begin
+      for i2 := 0 to 100 do
+      begin
+        if(Random0To100[i2]=max_value)then begin Random0To100[i2]:=Percent_Random0To100; Tempo2_0To100[i2]:= 0; end;
+        if(Random0To100[i2]<max_value)then Random0To100[i2]:=round(Percent_Random0To100/2);
+      end;
+      continue;
+    end;
+
+    _r_:=RandomByMinMax(min,max);
+
+    if(min_value=max_value)then
+    begin
+      Random0To100[_r_]:=round(Random0To100[_r_]/2);
+      i:=i+1;
+      Tempo0To100[_r_]:=true;
+      Counter_:=Counter_+1;
+      Tempo2_0To100[_r_]:=Counter_;
+      continue;
+    end;
+    if(Random0To100[_r_]=max_value)then
+    begin
+      Random0To100[_r_]:=round(Random0To100[_r_]/2);
+      i:=i+1;
+      Tempo0To100[_r_]:=true;
+      Counter_:=Counter_+1;
+      Tempo2_0To100[_r_]:=Counter_;
+      continue;
+    end;
+  end;
+
+  for i := 0 to 100 do
+  begin
+    sWorksheetGrid3.Cells[1,i+1]:= i.ToString+'='+Random0To100[i].ToString+'%';
+    if(Tempo0To100[i]=false)then sWorksheetGrid3.Cells[2,i+1]:= '';
+    if(Tempo0To100[i]=true)then sWorksheetGrid3.Cells[2,i+1]:= 'Active';
+    sWorksheetGrid3.Cells[3,i+1]:= Tempo2_0To100[i].ToString;
+    if(Tempo2_0To100[i]=0)then sWorksheetGrid3.Cells[3,i+1]:= '';
+  end;
+end;
+
+procedure TWorksheetGridAndRandomNumber.Random10TrickIn1to10ButtonClick(Sender: TObject);
+var
+  i:integer;
+  _r_:integer;
+  min:integer;
+  max:integer;
+  min_value:integer;
+  max_value:integer;
+  Tempo0To100 : array [0..100] of boolean;
+  Tempo2_0To100 : array [0..100] of integer;
+  Counter_:integer;
+begin
+
+  Randomize();
+  min:=1;
+  max:=10;
+  Counter_:=0;
+  min_value:=Percent_Random0To100;
+  max_value:=Percent_Random0To100;
+
+  for i := 0 to 100 do
+  begin
+    Random0To100[i]:=Percent_Random0To100;
+    Tempo0To100[i]:=false;
+    Tempo2_0To100[i]:=0;
+  end;
+
+
+  i:=1;
+  while i<=10 do
+  begin
+    //min+random(10000)mod max + 1;
+    Application.ProcessMessages;
+    min_value:=MinValue(Random0To100);
+    max_value:=MaxValue(Random0To100);
+    _r_:=RandomByMinMax(min,max);
+
+    if(min_value=max_value)then
+    begin
+      Random0To100[_r_]:=round(Random0To100[_r_]/2);
+      i:=i+1;
+      Tempo0To100[_r_]:=true;
+      Counter_:=Counter_+1;
+      Tempo2_0To100[_r_]:=Counter_;
+      continue;
+    end;
+    if(Random0To100[_r_]=max_value)then
+    begin
+      Random0To100[_r_]:=round(Random0To100[_r_]/2);
+      i:=i+1;
+      Tempo0To100[_r_]:=true;
+      Counter_:=Counter_+1;
+      Tempo2_0To100[_r_]:=Counter_;
+      continue;
+    end;
+  end;
+
+  for i := 0 to 100 do
+  begin
+    sWorksheetGrid3.Cells[1,i+1]:= i.ToString+'='+Random0To100[i].ToString+'%';
+    if(Tempo0To100[i]=false)then sWorksheetGrid3.Cells[2,i+1]:= '';
+    if(Tempo0To100[i]=true)then sWorksheetGrid3.Cells[2,i+1]:= 'Active';
+    sWorksheetGrid3.Cells[3,i+1]:= Tempo2_0To100[i].ToString;
+    if(Tempo2_0To100[i]=0)then sWorksheetGrid3.Cells[3,i+1]:= '';
+  end;
+end;
+
+procedure TWorksheetGridAndRandomNumber.SingleAdd1In1To10ButtonClick(Sender: TObject);
+var
+  i:integer;
+  _r_:integer;
+  min:integer;
+  max:integer;
+  min_value:integer;
+  max_value:integer;
+  Tempo0To100 : array [0..100] of boolean;
+  Tempo2_0To100 : array [0..100] of integer;
+  Counter_:integer;
+begin
+
+  Randomize();
+  min:=1;
+  max:=10;
+  Counter_:=0;
+  min_value:=Percent_Random0To100;
+  max_value:=Percent_Random0To100;
+
+  for i := 0 to 100 do
+  begin
+    Random0To100[i]:=Percent_Random0To100;
+    Tempo0To100[i]:=false;
+    Tempo2_0To100[i]:=0;
+  end;
+
+
+  i:=1;
+  while i<=1 do
+  begin
+    //min+random(10000)mod max + 1;
+    Application.ProcessMessages;
+    min_value:=MinValue(Random0To100);
+    max_value:=MaxValue(Random0To100);
+    _r_:=RandomByMinMax(min,max);
+
+    if(min_value=max_value)then
+    begin
+      Random0To100[_r_]:=round(Random0To100[_r_]/2);
+      i:=i+1;
+      Tempo0To100[_r_]:=true;
+      Counter_:=Counter_+1;
+      Tempo2_0To100[_r_]:=Counter_;
+      continue;
+    end;
+    if(Random0To100[_r_]=max_value)then
+    begin
+      Random0To100[_r_]:=round(Random0To100[_r_]/2);
+      i:=i+1;
+      Tempo0To100[_r_]:=true;
+      Counter_:=Counter_+1;
+      Tempo2_0To100[_r_]:=Counter_;
+      continue;
+    end;
+  end;
+
+  for i := 0 to 100 do
+  begin
+    sWorksheetGrid3.Cells[1,i+1]:= i.ToString+'='+Random0To100[i].ToString+'%';
+    if(Tempo0To100[i]=false)then sWorksheetGrid3.Cells[2,i+1]:= '';
+    if(Tempo0To100[i]=true)then sWorksheetGrid3.Cells[2,i+1]:= 'Active';
+    sWorksheetGrid3.Cells[3,i+1]:= Tempo2_0To100[i].ToString;
+    if(Tempo2_0To100[i]=0)then sWorksheetGrid3.Cells[3,i+1]:= '';
+  end;
+end;
+
+procedure TWorksheetGridAndRandomNumber.BCMaterialDesignButton2Click(Sender: TObject);
 begin
   sWorksheetGrid1.AutoCalc := true;
   sWorksheetGrid1.ColWidths[1]:=300;
@@ -394,7 +818,7 @@ begin
 
 end;
 
-procedure TForm1.BCMaterialDesignButton3Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.BCMaterialDesignButton3Click(Sender: TObject);
 begin
   // Protect the worksheet
   sWorksheetGrid1.Worksheet.Protection := DEFAULT_SHEET_PROTECTION;
@@ -405,7 +829,7 @@ begin
   sWorksheetGrid1.CellProtections[3, 2, 3, 5] := [];
 end;
 
-procedure TForm1.BCMaterialDesignButton4Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.BCMaterialDesignButton4Click(Sender: TObject);
 begin
   // Example for merging
   sWorksheetGrid1.MergeCells(1,1, 3,1);          // Combine the first 3 cells of the first row
@@ -413,13 +837,13 @@ begin
   sWorksheetGrid1.HorAlignment[1,1] := haCenter; // and center it.
 end;
 
-procedure TForm1.BCMaterialDesignButton5Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.BCMaterialDesignButton5Click(Sender: TObject);
 begin
   // Example for unmerging
   sWorksheetGrid1.UnmergeCells(1,1);             // Splits the merged block (1,1..3,1)
 end;
 
-procedure TForm1.BCMaterialDesignButton6Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.GridConveterButtonClick(Sender: TObject);
 var
   j:integer;
   k:Int64;
@@ -513,7 +937,7 @@ begin
 
 end;
 
-procedure TForm1.BCMaterialDesignButton7Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.RandomSkipDoublyButtonClick(Sender: TObject);
 var
   i:integer;
   _r_:integer;
@@ -529,9 +953,9 @@ begin
   Randomize();
   min:=0;
   max:=100;
+  Counter_:=0;
   min_value:=Percent_Random0To100;
-  min_value:=Percent_Random0To100;
-  if (max<min) then max:=min+1;
+  max_value:=Percent_Random0To100;
 
   //_r_:=2*3+1;  //_r_=7
   //showmessage(_r_.ToString);
@@ -548,7 +972,8 @@ begin
     Application.ProcessMessages;
     min_value:=MinValue(Random0To100);
     max_value:=MaxValue(Random0To100);
-    _r_:=((min+random(10000))mod (max+1)); //min to max
+    _r_:=RandomByMinMax(min,max);
+
     if(min_value=max_value)then
     begin
       Random0To100[_r_]:=round(Random0To100[_r_]/2);
@@ -576,21 +1001,7 @@ begin
   end;
 end;
 
-procedure TForm1.BCMaterialDesignButton8Click(Sender: TObject);
-var
-  i:integer;
-begin
-  Percent_Random0To100:=100;
-  for i := 0 to 100 do
-  begin
-    Random0To100[i]:=Percent_Random0To100;
-    sWorksheetGrid3.Cells[1,i+1]:= i.ToString+'='+Random0To100[i].ToString;
-    sWorksheetGrid3.Cells[2,i+1]:= '';
-    sWorksheetGrid3.Cells[3,i+1]:= '';
-  end;
-end;
-
-procedure TForm1.BCMaterialDesignButton9Click(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.RandomWithDifficultButtonClick(Sender: TObject);
 var
   i:integer;
   i2:integer;
@@ -607,9 +1018,82 @@ begin
   Randomize();
   min:=0;
   max:=100;
+  Counter_:=0;
   min_value:=Percent_Random0To100;
+  max_value:=Percent_Random0To100;
+
+  //_r_:=2*3+1;  //_r_=7
+  //showmessage(_r_.ToString);
+  for i := 0 to 100 do
+  begin
+    Tempo0To100[i]:=false;
+    Tempo2_0To100[i]:=0;
+  end;
+
+  i:=0;
+  while i<=100 do
+  begin
+    //min+random(10000)mod max + 1;
+    Application.ProcessMessages;
+    min_value:=MinValue(Random0To100);
+    max_value:=MaxValue(Random0To100);
+
+    _r_:=RandomByMinMax(min,max);
+
+    if(DifficultRandom(Random0To100[i],1,100))then
+    begin
+      Random0To100[_r_]:=round(Random0To100[_r_]/2);
+      Tempo0To100[_r_]:=true;
+      Counter_:=Counter_+1;
+      Tempo2_0To100[_r_]:=Counter_;
+    end;
+    i:=i+1;
+  end;
+  for i := 0 to 100 do
+  begin
+    sWorksheetGrid3.Cells[1,i+1]:= i.ToString+'='+Random0To100[i].ToString+'%';
+    if(Tempo0To100[i]=false)then sWorksheetGrid3.Cells[2,i+1]:= '';
+    if(Tempo0To100[i]=true)then sWorksheetGrid3.Cells[2,i+1]:= 'Active';
+    sWorksheetGrid3.Cells[3,i+1]:= Tempo2_0To100[i].ToString;
+    if(Tempo2_0To100[i]=0)then sWorksheetGrid3.Cells[3,i+1]:= '';
+  end;
+
+end;
+
+procedure TWorksheetGridAndRandomNumber.InitializationArrayRamdomButtonClick(Sender: TObject);
+var
+  i:integer;
+begin
+  Percent_Random0To100:=100;
+  for i := 0 to 100 do
+  begin
+    Random0To100[i]:=Percent_Random0To100;
+    sWorksheetGrid3.Cells[1,i+1]:= i.ToString+'='+Random0To100[i].ToString;
+    sWorksheetGrid3.Cells[2,i+1]:= '';
+    sWorksheetGrid3.Cells[3,i+1]:= '';
+  end;
+end;
+
+procedure TWorksheetGridAndRandomNumber.RandomSkipDoublyAutoUpStateButtonClick(Sender: TObject);
+var
+  i:integer;
+  i2:integer;
+  _r_:integer;
+  min:integer;
+  max:integer;
+  min_value:integer;
+  max_value:integer;
+  Tempo0To100 : array [0..100] of boolean;
+  Tempo2_0To100 : array [0..100] of integer;
+  Counter_:integer;
+begin
+
+  Randomize();
+  min:=0;
+  max:=100;
+  Counter_:=0;
   min_value:=Percent_Random0To100;
-  if (max<min) then max:=min+1;
+  max_value:=Percent_Random0To100;
 
   //_r_:=2*3+1;  //_r_=7
   //showmessage(_r_.ToString);
@@ -636,7 +1120,8 @@ begin
       continue;
     end;
 
-    _r_:=((min+random(10000))mod (max+1)); //min to max
+    _r_:=RandomByMinMax(min,max);
+
     if(min_value=max_value)then
     begin
       Random0To100[_r_]:=round(Random0To100[_r_]/2);
@@ -664,16 +1149,12 @@ begin
   end;
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TWorksheetGridAndRandomNumber.FormCreate(Sender: TObject);
 var
   i:integer;
   c: TGridColumn;
 begin
-  BCMaterialDesignButton1.Caption:='Linear'+#13#10+'congruential'+#13#10+'generator';
-  BCMaterialDesignButton7.Caption:='Random type 1'+#13#10+'For loop=100'+#13#10+'generator';
-  BCMaterialDesignButton9.Caption:='Random type 2'+#13#10+'For loop=100'+#13#10+'generator';
-  BCMaterialDesignButton10.Caption:='Random type 2'+#13#10+'while loop=1-10'+#13#10+'generator';
-  BCMaterialDesignButton11.Caption:='Random type 2'+#13#10+'while =0-100'+#13#10+'generator';
+  LinearCongruentialGeneratorButton.Caption:='Linear'+#13#10+'congruential'+#13#10+'generator'; //'Linear'+chr(13)+'congruential'+chr(13)+'generator';
   sWorksheetGrid1.ColCount:=0;
   sWorksheetGrid1.RowCount:=101;
   for i := 1 to 6 do
@@ -697,6 +1178,55 @@ begin
   sWorksheetGrid1.Refresh;
   sWorksheetGrid1.Repaint;
 
+end;
+
+function TWorksheetGridAndRandomNumber.DifficultRandom(IndexPosition:integer; MinEasy:integer; MaxEasy:integer): boolean;
+  //Longint= - 2147483648..2147483647;
+  //Integer = Smallint = - 32768..32767;
+  //float = Extended =  1.9E-4932 .. 1.1E4932
+var
+  i:integer;
+  _r_:integer;
+  _Old_:integer;
+  //_f_:Extended;
+begin
+  if (MaxEasy<MinEasy) then MaxEasy:=MinEasy+1;
+  if (IndexPosition<MinEasy) then begin DifficultRandom:=false; exit; end;
+  _Old_:=0;
+  DifficultRandom:=false;
+  i:=MinEasy;
+  while i<=MinEasy do   //while i<=PercentEasy do
+  begin
+    Application.ProcessMessages;
+    _r_:=((MinEasy+random(10000))mod (MaxEasy+1)); //min to max
+    //_r_:=MinEasy+random(MaxEasy+1); //min to max
+    //showmessage('r='+_r_.ToString+' max='+MaxEasy.ToString+' i='+i.ToString+' Mx-P='+IntToStr(MaxEasy-PercentEasy));
+    //_f_:=math.randg(Pi,MaxEasy);
+    //_r_:=Round(abs(MinEasy+_f_)); //min to max
+    //showmessage('f='+_f_.ToString+'r='+_r_.ToString+' max='+MaxEasy.ToString+' i='+i.ToString);
+    if(_r_<MinEasy)then continue;
+    if(_r_>MaxEasy)then continue;
+    if(_Old_=_r_) then  continue;
+    if(_r_>=(MaxEasy-IndexPosition))then begin DifficultRandom:=true; i:=MaxEasy+1; exit; end;
+    i:=i+1;
+    _Old_:=_r_;
+  end;
+end;
+
+function TWorksheetGridAndRandomNumber.RandomByMinMax(Min_:integer; Max_:integer): integer;
+var
+  _Old_:integer;
+begin
+  if (Max_<Min_) then Max_:=Min_+1;
+  _Old_:=0;
+  repeat
+    Application.ProcessMessages;
+    RandomByMinMax:=((Min_+random(10000))mod (Max_+1)); //min to max
+    if(_Old_=RandomByMinMax) then  continue;
+    if(RandomByMinMax<Min_)then continue;
+    if(RandomByMinMax>Max_)then continue;
+    _Old_:=RandomByMinMax;
+  until ((RandomByMinMax>=Min_) and (RandomByMinMax<=Max_));
 end;
 
 end.
